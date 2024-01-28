@@ -1,0 +1,17 @@
+.burger-btn rect {
+    transition: .2s;
+    transform-origin: center center;
+}
+
+.burger-btn.active rect:nth-child(1) {
+    transform: translate(-8px, 11px) rotate(45deg);
+}
+
+.burger-btn.active rect:nth-child(2) {
+    transform: translateX(20px);
+    opacity: 0;
+}
+
+.burger-btn.active rect:nth-child(3) {
+    transform: translate(-8px, -6px) rotate(-45deg);
+}
