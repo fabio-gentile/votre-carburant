@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
 import NavBar from '@/components/ui/NavBar';
+import Footer from '@/components/ui/Footer';
 
 const marianne = localFont({
   src: [
@@ -38,9 +39,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${marianne.className} mx-auto flex min-h-[200vh] flex-col bg-primary`}>
+      <body className={`${marianne.className} mx-auto flex min-h-[100vh] flex-col bg-primary`}>
         <NavBar />
-        <main className='grow'>{children}</main>
+        <main className='grow bg-white-bg'>{children}</main>
+        <Footer />
       </body>
     </html>
   );

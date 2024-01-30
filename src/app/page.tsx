@@ -1,3 +1,3 @@
 export default function Home() {
-  return <main className='bg-primary'></main>;
+  return <main className=''></main>;
 }

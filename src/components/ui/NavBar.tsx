@@ -81,8 +81,8 @@ const Navbar = () => {
   return (
     <header
       className={clsx(
-        'mx-auto h-full w-full  px-6 py-3 text-white sm:text-xl md:px-12 lg:px-20',
-        `${open ? 'overflow-hidden' : ''}`
+        'mx-auto w-full bg-primary px-6 py-3 text-white sm:text-xl md:px-12 md:py-4 lg:px-20',
+        `${open ? 'h-[100vh] overflow-hidden' : 'h-full'}`
       )}
     >
       <nav className={clsx('', `${open ? 'flex-col' : ''}`)}>
