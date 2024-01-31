@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
-import NavBar from '@/components/ui/NavBar';
-import Footer from '@/components/ui/Footer';
+import NavBar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import Wrapper from '@/components/Wrapper';
+import React from 'react';
 
 const marianne = localFont({
   src: [
@@ -39,9 +41,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${marianne.className} mx-auto flex min-h-[100vh] flex-col bg-primary`}>
+      <body className={`${marianne.className} mx-auto flex min-h-[100vh] flex-col justify-center`}>
         <NavBar />
-        <main className='grow bg-white-bg'>{children}</main>
+        <main className='grow bg-white-bg '>
+          <Wrapper>{children}</Wrapper>
+        </main>
         <Footer />
       </body>
     </html>
