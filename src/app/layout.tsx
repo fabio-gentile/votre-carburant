@@ -5,6 +5,7 @@ import NavBar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Wrapper from '@/components/Wrapper';
 import React from 'react';
+import { NextAuthProvider } from '@/app/provider';
 
 const marianne = localFont({
   src: [
@@ -42,11 +43,13 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${marianne.className} mx-auto flex min-h-[100vh] flex-col justify-center`}>
-        <NavBar />
-        <main className='grow bg-white-bg '>
-          <Wrapper>{children}</Wrapper>
-        </main>
-        <Footer />
+        <NextAuthProvider>
+          <NavBar />
+          <main className='grow bg-white-bg '>
+            <Wrapper>{children}</Wrapper>
+          </main>
+          <Footer />
+        </NextAuthProvider>
       </body>
     </html>
   );
