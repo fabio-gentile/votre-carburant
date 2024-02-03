@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
-import NavBar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import Wrapper from '@/components/Wrapper';
+import { NavigationMenu } from '@/components/navigation-menu';
+import { Footer } from '@/components/footer';
+import { Wrapper } from '@/components/wrapper';
 import React from 'react';
 import { NextAuthProvider } from '@/app/provider';
 
@@ -44,7 +44,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${marianne.className} mx-auto flex min-h-[100vh] flex-col justify-center`}>
         <NextAuthProvider>
-          <NavBar />
+          <NavigationMenu />
           <main className='grow bg-white-bg '>
             <Wrapper>{children}</Wrapper>
           </main>

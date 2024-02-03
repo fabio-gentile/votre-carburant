@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
-import Wrapper from '@/components/Wrapper';
+import { Wrapper } from '@/components/wrapper';
 import { NavItem } from '@/types';
 
-const Footer = () => {
+export const Footer = () => {
   const navigationLinks: Array<NavItem> = [
     {
       title: 'Accueil',
@@ -50,5 +50,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Logo from '@/components/Logo';
+import { Logo } from '@/components/logo';
 import Link from 'next/link';
 import {
   BarChart2Icon,
@@ -14,12 +14,12 @@ import {
   User,
   UserPlus,
 } from 'lucide-react';
-import BurgerMenu from '@/components/BurgerMenu';
+import { BurgerMenu } from '@/components/burger-menu';
 import { clsx } from 'clsx';
-import Wrapper from '@/components/Wrapper';
 import { NavItem } from '@/types';
+import { Wrapper } from '@/components/wrapper';
 
-const Navbar = () => {
+export const NavigationMenu = () => {
   const [isOpened, setIsOpened] = useState<Boolean>(false);
 
   const navigationLinks: Array<NavItem> = [
@@ -164,5 +164,3 @@ const Navbar = () => {
     </>
   );
 };
-
-export default Navbar;

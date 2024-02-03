@@ -1,8 +1,13 @@
-import './BurgerMenu.css';
-import { BurgerMenu } from '@/types';
+import './burger-menu.css';
 import React from 'react';
 
-const BurgerMenu: React.FC<BurgerMenu> = ({ opened, handleMenu, title }) => {
+export type Props = {
+  opened: Boolean;
+  handleMenu: () => void;
+  title?: string;
+};
+
+export const BurgerMenu: React.FC<Props> = ({ opened, handleMenu, title }) => {
   return (
     <svg
       onClick={handleMenu}
@@ -17,5 +22,3 @@ const BurgerMenu: React.FC<BurgerMenu> = ({ opened, handleMenu, title }) => {
     </svg>
   );
 };
-
-export default BurgerMenu;

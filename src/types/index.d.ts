@@ -5,9 +5,3 @@ export type NavItem = {
   href: string;
   icon?: React.ReactNode;
 };
-
-export type BurgerMenu = {
-  opened: Boolean;
-  handleMenu: () => void;
-  title?: string;
-};
