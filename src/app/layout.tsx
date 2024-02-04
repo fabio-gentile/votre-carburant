@@ -45,7 +45,7 @@ export default function RootLayout({
       <body className={`${marianne.className} mx-auto flex min-h-[100vh] flex-col justify-center`}>
         <NextAuthProvider>
           <NavigationMenu />
-          <main className='grow bg-white-bg '>
+          <main className='grow bg-white-bg py-8 md:py-12'>
             <Wrapper>{children}</Wrapper>
           </main>
           <Footer />
