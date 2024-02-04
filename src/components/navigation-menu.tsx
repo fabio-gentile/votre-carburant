@@ -12,60 +12,64 @@ import {
   MessageCircleQuestionIcon,
   Search,
   User,
-  UserPlus,
 } from 'lucide-react';
 import { BurgerMenu } from '@/components/burger-menu';
 import { clsx } from 'clsx';
 import { NavItem } from '@/types';
 import { Wrapper } from '@/components/wrapper';
+import { useSession } from 'next-auth/react';
 
 export const NavigationMenu = () => {
   const [isOpened, setIsOpened] = useState<Boolean>(false);
+  const { data: session, status } = useSession();
 
   const navigationLinks: Array<NavItem> = [
     {
       title: 'Accueil',
       href: '/',
+      show: 'DEFAULT',
       icon: <Home />,
     },
     {
       title: 'Rechercher',
       href: '/rechercher',
+      show: 'DEFAULT',
       icon: <Search />,
     },
     {
       title: 'Meilleur prix',
       href: '/meilleurs-prix',
+      show: 'DEFAULT',
       icon: <BarChart2Icon />,
     },
     {
       title: 'Favoris',
       href: '/favoris',
+      show: 'DEFAULT',
       icon: <BookmarkCheck />,
     },
     {
       title: 'À propos',
       href: '/a-propos',
+      show: 'DEFAULT',
       icon: <MessageCircleQuestionIcon />,
     },
     {
       title: 'Se connecter',
       href: '/connexion',
+      show: 'NOT AUTHENTICATED',
       icon: <LogIn />,
-    },
-    {
-      title: "S'enregister",
-      href: '/inscription',
-      icon: <UserPlus />,
     },
     {
       title: 'Mon compte',
       href: '/profile',
+      show: 'AUTHENTICATED',
       icon: <User />,
     },
     {
       title: 'Déconnexion',
       href: '/deconnexion',
+      show: 'AUTHENTICATED',
       icon: <LogOut />,
     },
   ];
@@ -87,38 +91,63 @@ export const NavigationMenu = () => {
             <div className='flex items-center justify-between'>
               <ul className='gap flex items-center gap-4'>
                 <li className='lg:hidden'>
-                  <BurgerMenu title={'Menu burger'} opened={isOpened} handleMenu={handleMenu} />
+                  <BurgerMenu
+                    title={'Menu burger'}
+                    opened={isOpened}
+                    handleMenu={handleMenu}
+                  />
                 </li>
                 <li>
-                  <Link href='/' className='block w-fit'>
+                  <Link
+                    href='/'
+                    className='block w-fit'
+                  >
                     <Logo />
                   </Link>
                 </li>
               </ul>
               <ul className='flex items-center gap-8'>
-                <li className='hidden hover:bg-blue-600 sm:block'>
-                  <Link className='rounded-lg p-2 hover:bg-blue-600' href='/rechercher'>
+                <li className='relative hidden sm:block'>
+                  <Link
+                    className='rounded-lg p-2 hover:bg-white/10'
+                    href='/rechercher'
+                  >
                     Rechercher
                   </Link>
                 </li>
                 <li className='hidden sm:block'>
-                  <Link className='rounded-lg p-2 hover:bg-blue-600' href='/meilleurs-prix'>
+                  <Link
+                    className='rounded-lg p-2 hover:bg-white/10'
+                    href='/meilleurs-prix'
+                  >
                     Meilleurs prix
                   </Link>
                 </li>
                 <li className='hidden lg:block'>
-                  <Link className='rounded-lg p-2 hover:bg-blue-600' href='/favoris'>
+                  <Link
+                    className='rounded-lg p-2 hover:bg-white/10'
+                    href='/favoris'
+                  >
                     Favoris
                   </Link>
                 </li>
                 <li className='hidden lg:block'>
-                  <Link className='rounded-lg p-2 hover:bg-blue-600' href='/a-propos'>
+                  <Link
+                    className='rounded-lg p-2 hover:bg-white/10'
+                    href='/a-propos'
+                  >
                     À propos
                   </Link>
                 </li>
                 <li>
-                  <Link title='Mon Compte' href='/profile'>
-                    <User color={'white'} size={36} />
+                  <Link
+                    title='Mon Compte'
+                    href='/profile'
+                  >
+                    <User
+                      color={'white'}
+                      size={36}
+                    />
                   </Link>
                 </li>
               </ul>
@@ -147,14 +176,29 @@ export const NavigationMenu = () => {
         >
           <nav>
             <ul className='grid gap-4 '>
-              {navigationLinks.map((link) => (
-                <li key={link.title} className='w-fit rounded-lg hover:bg-blue-600'>
-                  <Link tabIndex={isOpened ? 1 : -1} href={link.href} className='flex items-center gap-2 p-2 '>
-                    <span className='w-7'>{link.icon}</span>
-                    {link.title}
-                  </Link>
-                </li>
-              ))}
+              {navigationLinks.map((link) => {
+                if (
+                  link.show === 'DEFAULT' ||
+                  (link.show === 'AUTHENTICATED' && status === 'authenticated') ||
+                  (link.show === 'NOT AUTHENTICATED' && status === 'unauthenticated')
+                ) {
+                  return (
+                    <li
+                      key={link.title}
+                      className='inline-flex'
+                    >
+                      <Link
+                        tabIndex={isOpened ? 1 : -1}
+                        href={link.href}
+                        className='flex items-center gap-2 rounded-lg p-2 hover:bg-white/10'
+                      >
+                        <span className='w-7'>{link.icon}</span>
+                        {link.title}
+                      </Link>
+                    </li>
+                  );
+                }
+              })}
               <li></li>
             </ul>
           </nav>
