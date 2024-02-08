@@ -8,26 +8,37 @@ export const Footer = () => {
     {
       title: 'Accueil',
       href: '/',
+      show: 'DEFAULT',
     },
     {
       title: 'Rechercher',
       href: '/rechercher',
+      show: 'DEFAULT',
     },
     {
       title: 'Meilleurs prix',
       href: '/meilleurs-prix',
+      show: 'DEFAULT',
     },
     {
       title: 'Favoris',
       href: '/favoris',
+      show: 'DEFAULT',
     },
     {
       title: 'À propos',
       href: '/a-propos',
+      show: 'DEFAULT',
+    },
+    {
+      title: 'Contact',
+      href: '/contact',
+      show: 'DEFAULT',
     },
     {
       title: 'Mon compte',
       href: '/profile',
+      show: 'DEFAULT',
     },
   ];
 
@@ -37,8 +48,14 @@ export const Footer = () => {
         <nav>
           <ul className='flex flex-wrap justify-center gap-4 md:gap-8 '>
             {navigationLinks.map((link) => (
-              <li key={link.title} className='w-fit hover:underline'>
-                <Link href={link.href} className=''>
+              <li
+                key={link.title}
+                className='w-fit hover:underline'
+              >
+                <Link
+                  href={link.href}
+                  className=''
+                >
                   {link.title}
                 </Link>
               </li>

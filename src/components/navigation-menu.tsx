@@ -9,6 +9,7 @@ import {
   Home,
   LogIn,
   LogOut,
+  MailQuestion,
   MessageCircleQuestionIcon,
   Search,
   User,
@@ -53,6 +54,12 @@ export const NavigationMenu = () => {
       href: '/a-propos',
       show: 'DEFAULT',
       icon: <MessageCircleQuestionIcon />,
+    },
+    {
+      title: 'Contact',
+      href: '/contact',
+      show: 'DEFAULT',
+      icon: <MailQuestion />,
     },
     {
       title: 'Se connecter',
