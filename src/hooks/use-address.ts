@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { AddressFeature } from '@/types';
 import axios from 'axios';
-import { getGeolocation } from '@/hooks/use-geolocation';
+import { getGeolocation } from '@/lib/geolocation';
 
 export const useAddress = (query: string) => {
   const { data, isPending } = useQuery<AddressFeature[]>({
