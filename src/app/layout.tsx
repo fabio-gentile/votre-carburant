@@ -5,7 +5,7 @@ import { NavigationMenu } from '@/components/navigation-menu';
 import { Footer } from '@/components/footer';
 import { Wrapper } from '@/components/wrapper';
 import React from 'react';
-import { NextAuthProvider } from '@/app/provider';
+import { NextAuthProvider, TanstackQueryProvider } from '@/app/provider';
 
 const marianne = localFont({
   src: [
@@ -44,11 +44,13 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${marianne.className} mx-auto flex min-h-[100vh] flex-col justify-center`}>
         <NextAuthProvider>
-          <NavigationMenu />
-          <main className='grow bg-white-bg py-8 md:py-12'>
-            <Wrapper>{children}</Wrapper>
-          </main>
-          <Footer />
+          <TanstackQueryProvider>
+            <NavigationMenu />
+            <main className='grow bg-white-bg py-8 md:py-12'>
+              <Wrapper>{children}</Wrapper>
+            </main>
+            <Footer />
+          </TanstackQueryProvider>
         </NextAuthProvider>
       </body>
     </html>
