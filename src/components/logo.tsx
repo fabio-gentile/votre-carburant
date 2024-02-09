@@ -8,7 +8,7 @@ export const Logo = () => {
         color='white'
         size={36}
       />
-      <h1 style={{ fontSize: '16px !important' }}>votre-carburant.fr</h1>
+      <h1>votre-carburant.fr</h1>
     </div>
   );
 };

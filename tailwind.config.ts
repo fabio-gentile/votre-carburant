@@ -25,6 +25,14 @@ const config: Config = {
         'white-bg': 'hsl(0, 0%, 94.9%)',
         primary: 'hsl(240, 100%, 53.5%)',
         destructive: 'hsl(351.9, 100%, 45.1%)',
+        placeholder: 'hsla(240, 3.8%, 46.1%, 0.6)',
+      },
+      theme: {
+        extend: {
+          screens: {
+            lg: '992px',
+          },
+        },
       },
     },
   },

@@ -6,7 +6,7 @@ import { signIn } from 'next-auth/react';
 export default function SignIn() {
   return (
     <div className={'w-84 mx-auto grid gap-4 sm:w-96'}>
-      <h1>Se connecter en un clic</h1>
+      <h1 className='primary-title'>Se connecter en un clic</h1>
       <Button
         className={'bg-[#4285F4] hover:bg-[#4285F4]'}
         onClick={() => signIn('google')}
