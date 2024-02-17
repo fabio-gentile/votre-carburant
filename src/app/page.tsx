@@ -1,5 +1,6 @@
 import { SearchStation } from '@/components/search-station';
 import { getAverageFuel } from '@/services/averageFuel';
+import { HomeChart } from '@/components/home-chart';
 
 export default async function Page() {
   return (
@@ -12,9 +13,9 @@ export default async function Page() {
 }
 
 async function AverageFuel() {
-  const currentDay = new Date().toLocaleDateString();
-  const data = await getAverageFuel();
-
+  const currentDay = new Date().toLocaleDateString('fr-FR');
+  const { averageFuel: data, totalCount } = await getAverageFuel();
+  console.log(data, totalCount);
   return (
     <>
       <h2 className='secondary-title text-center'>Prix national moyen le {currentDay}</h2>
@@ -29,6 +30,10 @@ async function AverageFuel() {
           </div>
         ))}
       </div>
+      <HomeChart
+        averageFuel={data}
+        totalCount={totalCount}
+      />
     </>
   );
 }

@@ -83,3 +83,9 @@ export interface Station {
   rupture_fin: string | null;
   horaires_automate_24_24: string;
 }
+
+export interface AverageFuel {
+  name_fuel: string;
+  average_price: number;
+  count: number;
+}
