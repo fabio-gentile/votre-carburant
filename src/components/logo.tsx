@@ -1,13 +1,14 @@
 import React from 'react';
-import { Fuel } from 'lucide-react';
+import { Icons } from '@/components/icons';
 
 export const Logo = () => {
   return (
     <div className='flex items-center gap-2'>
-      <Fuel
+      <Icons.fuel
         color='white'
         size={36}
       />
+
       <h1>votre-carburant.fr</h1>
     </div>
   );

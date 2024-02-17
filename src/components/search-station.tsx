@@ -1,7 +1,6 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { ChevronsUpDown, Locate } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import React, { useEffect, useState } from 'react';
 import { Select } from '@/components/ui/select';
@@ -9,6 +8,7 @@ import { useDebounce } from '@/hooks/use-debounce';
 import { useAddress, useReverseGeolocation } from '@/hooks/use-address';
 import { AddressFeature } from '@/types';
 import { useRouter } from 'next/navigation';
+import { Icons } from '@/components/icons';
 
 interface FuelType {
   value: string;
@@ -109,7 +109,7 @@ export const SearchStation = () => {
               onChange={handleChangeForm}
               className={error && 'border-destructive'}
             />
-            <Locate
+            <Icons.locate
               className='absolute right-3 top-2 cursor-pointer text-placeholder'
               onClick={handleGeolocation}
             />
@@ -150,7 +150,7 @@ export const SearchStation = () => {
               </option>
             ))}
           </Select>
-          <ChevronsUpDown className='pointer-events-none absolute right-3 top-2 cursor-pointer text-placeholder' />
+          <Icons.chevronUpDown className='pointer-events-none absolute right-3 top-2 cursor-pointer text-placeholder' />
         </div>
         <Button className='w-full lg:w-fit'>Rechercher</Button>
       </form>

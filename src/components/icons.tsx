@@ -1,0 +1,33 @@
+import {
+  ChevronsUpDown,
+  Locate,
+  Clock,
+  MapPin,
+  Fuel,
+  BarChart2Icon,
+  BookmarkCheck,
+  Home,
+  LogIn,
+  LogOut,
+  MailQuestion,
+  MessageCircleQuestionIcon,
+  Search,
+  User,
+} from 'lucide-react';
+
+export const Icons = {
+  chevronUpDown: ChevronsUpDown,
+  locate: Locate,
+  clock: Clock,
+  mapPin: MapPin,
+  fuel: Fuel,
+  barChart2: BarChart2Icon,
+  bookmarkCheck: BookmarkCheck,
+  home: Home,
+  logIn: LogIn,
+  logOut: LogOut,
+  mailQuestion: MailQuestion,
+  messageCircleQuestion: MessageCircleQuestionIcon,
+  search: Search,
+  user: User,
+};

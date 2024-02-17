@@ -3,17 +3,7 @@
 import React, { useState } from 'react';
 import { Logo } from '@/components/logo';
 import Link from 'next/link';
-import {
-  BarChart2Icon,
-  BookmarkCheck,
-  Home,
-  LogIn,
-  LogOut,
-  MailQuestion,
-  MessageCircleQuestionIcon,
-  Search,
-  User,
-} from 'lucide-react';
+import { Icons } from '@/components/icons';
 import { BurgerMenu } from '@/components/burger-menu';
 import { clsx } from 'clsx';
 import { NavItem } from '@/types';
@@ -29,55 +19,55 @@ export const NavigationMenu = () => {
       title: 'Accueil',
       href: '/',
       show: 'DEFAULT',
-      icon: <Home />,
+      icon: <Icons.home />,
     },
     {
       title: 'Rechercher',
       href: '/rechercher',
       show: 'DEFAULT',
-      icon: <Search />,
+      icon: <Icons.search />,
     },
     {
       title: 'Meilleur prix',
       href: '/meilleurs-prix',
       show: 'DEFAULT',
-      icon: <BarChart2Icon />,
+      icon: <Icons.barChart2 />,
     },
     {
       title: 'Favoris',
       href: '/favoris',
       show: 'DEFAULT',
-      icon: <BookmarkCheck />,
+      icon: <Icons.bookmarkCheck />,
     },
     {
       title: 'À propos',
       href: '/a-propos',
       show: 'DEFAULT',
-      icon: <MessageCircleQuestionIcon />,
+      icon: <Icons.messageCircleQuestion />,
     },
     {
       title: 'Contact',
       href: '/contact',
       show: 'DEFAULT',
-      icon: <MailQuestion />,
+      icon: <Icons.mailQuestion />,
     },
     {
       title: 'Se connecter',
       href: '/connexion',
       show: 'NOT AUTHENTICATED',
-      icon: <LogIn />,
+      icon: <Icons.logIn />,
     },
     {
       title: 'Mon compte',
       href: '/profile',
       show: 'AUTHENTICATED',
-      icon: <User />,
+      icon: <Icons.user />,
     },
     {
       title: 'Déconnexion',
       href: '/deconnexion',
       show: 'AUTHENTICATED',
-      icon: <LogOut />,
+      icon: <Icons.logOut />,
     },
   ];
   const handleMenu = () => {
@@ -151,7 +141,7 @@ export const NavigationMenu = () => {
                     title='Mon Compte'
                     href='/profile'
                   >
-                    <User
+                    <Icons.user
                       color={'white'}
                       size={36}
                     />
