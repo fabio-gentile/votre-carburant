@@ -1,12 +1,12 @@
-import { AverageFuel } from '@/types';
+import { AverageFuel, FuelType } from '@/types';
 
 export const getAverageFuel = async (): Promise<{ averageFuel: AverageFuel[]; totalCount: number }> => {
-  const FUEL_NAME = ['Gazole', 'SP98', 'E10', 'SP95', 'E85', 'GPLc'];
+  const FUEL_NAME: FuelType[] = ['Gazole', 'SP98', 'E10', 'SP95', 'E85', 'GPLc'];
 
   const response = await Promise.all(
     FUEL_NAME.map(async (fuel: string): Promise<AverageFuel> => {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_FUEL}?select=AVG(prix_valeur)%20as%20average_price%2C%20prix_nom%2C%20COUNT(*)%20as%20count&where=prix_nom%3D%22${fuel}%22&limit=1`
+        `${process.env.NEXT_PUBLIC_API_DAILY_FUEL}?select=AVG(prix_valeur)%20as%20average_price%2C%20prix_nom%2C%20COUNT(*)%20as%20count&where=prix_nom%3D%22${fuel}%22&limit=1`
       );
       const data = await response.json();
 
