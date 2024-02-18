@@ -1,6 +1,25 @@
 import { SearchStation } from '@/components/search-station';
 import { getAverageFuel } from '@/services/averageFuel';
 import { HomeChart } from '@/components/home-chart';
+import {
+  CardStationContainer,
+  CardStationInformation,
+  CardStationLocalisation,
+  CardStationTitle,
+  CardStationUpdate,
+  CardStationServices,
+  CardStationServiceIcon,
+  CardStationFuel,
+  CardStationFuelName,
+  CardStationFuelPrice,
+  CardStationFuels,
+  CardStationServiceIconContent,
+  CardStation,
+} from '@/components/card-station';
+import { getLatestStations } from '@/services/station';
+import { FuelType } from '@/types';
+import { Icons } from '@/components/icons';
+import { millisecondsToHoursAndMinutes } from '@/lib/utils';
 
 export default async function Page() {
   return (
@@ -8,6 +27,7 @@ export default async function Page() {
       <h1 className='primary-title text-center'>Le carburant le moins cher, le plus près de chez vous.</h1>
       <SearchStation />
       <AverageFuel />
+      <LatestStations />
     </main>
   );
 }
@@ -15,7 +35,7 @@ export default async function Page() {
 async function AverageFuel() {
   const currentDay = new Date().toLocaleDateString('fr-FR');
   const { averageFuel: data, totalCount } = await getAverageFuel();
-  console.log(data, totalCount);
+
   return (
     <>
       <h2 className='secondary-title text-center'>Prix national moyen le {currentDay}</h2>
@@ -34,6 +54,17 @@ async function AverageFuel() {
         averageFuel={data}
         totalCount={totalCount}
       />
+    </>
+  );
+}
+
+async function LatestStations() {
+  const { data } = await getLatestStations();
+
+  return (
+    <>
+      <h2 className='secondary-title text-center'>Dernière stations mises à jours</h2>
+      <CardStation stations={data} />
     </>
   );
 }
