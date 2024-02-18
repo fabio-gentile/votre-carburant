@@ -1,4 +1,5 @@
 import React from 'react';
+import { number } from 'prop-types';
 
 export interface NavItem {
   title: string;
@@ -108,3 +109,27 @@ export type CardStation = {
   carburants_indisponibles: FuelType[];
   services_service: string[];
 };
+
+export interface StationDetails {
+  geom: {
+    lon: number;
+    lat: number;
+  };
+  horaires: string[] | null;
+  prix: Price[];
+  horaires_automate_24_24: string | null;
+  id: number;
+  adresse: string;
+  cp: string;
+  ville: string;
+  carburants_disponibles: string[] | null;
+  carburants_indisponibles: string[] | null;
+  services_service: string[] | null;
+}
+
+export interface Price {
+  '@nom': string;
+  '@id': string;
+  '@maj': string;
+  '@valeur': string;
+}
