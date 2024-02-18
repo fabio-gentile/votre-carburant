@@ -2,11 +2,12 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { signIn } from 'next-auth/react';
+import { PrimaryTitle } from '@/components/ui/title';
 
 export default function SignIn() {
   return (
     <div className={'w-84 mx-auto grid gap-4 sm:w-96'}>
-      <h1 className='primary-title'>Se connecter en un clic</h1>
+      <PrimaryTitle>Se connecter en un clic</PrimaryTitle>
       <Button
         className={'bg-[#4285F4] hover:bg-[#4285F4]'}
         onClick={() => signIn('google')}

@@ -1,30 +1,14 @@
 import { SearchStation } from '@/components/search-station';
 import { getAverageFuel } from '@/services/averageFuel';
 import { HomeChart } from '@/components/home-chart';
-import {
-  CardStationContainer,
-  CardStationInformation,
-  CardStationLocalisation,
-  CardStationTitle,
-  CardStationUpdate,
-  CardStationServices,
-  CardStationServiceIcon,
-  CardStationFuel,
-  CardStationFuelName,
-  CardStationFuelPrice,
-  CardStationFuels,
-  CardStationServiceIconContent,
-  CardStation,
-} from '@/components/card-station';
+import { CardStation } from '@/components/card-station';
 import { getLatestStations } from '@/services/station';
-import { FuelType } from '@/types';
-import { Icons } from '@/components/icons';
-import { millisecondsToHoursAndMinutes } from '@/lib/utils';
+import { PrimaryTitle, SecondaryTitle } from '@/components/ui/title';
 
 export default async function Page() {
   return (
     <main className='flex flex-col justify-center gap-8 sm:gap-12 lg:gap-16'>
-      <h1 className='primary-title text-center'>Le carburant le moins cher, le plus près de chez vous.</h1>
+      <PrimaryTitle className='text-center'>Le carburant le moins cher, le plus près de chez vous.</PrimaryTitle>
       <SearchStation />
       <AverageFuel />
       <LatestStations />
@@ -38,7 +22,7 @@ async function AverageFuel() {
 
   return (
     <>
-      <h2 className='secondary-title text-center'>Prix national moyen le {currentDay}</h2>
+      <SecondaryTitle className='text-center'>Prix national moyen le {currentDay}</SecondaryTitle>
       <div className='grid grid-cols-3 gap-y-4'>
         {data.map((d) => (
           <div
@@ -63,7 +47,7 @@ async function LatestStations() {
 
   return (
     <>
-      <h2 className='secondary-title text-center'>Dernière stations mises à jours</h2>
+      <SecondaryTitle className='text-center'>Dernière stations mises à jours</SecondaryTitle>
       <CardStation stations={data} />
     </>
   );
