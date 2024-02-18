@@ -13,6 +13,7 @@ import {
   MessageCircleQuestionIcon,
   Search,
   User,
+  CircleOff,
 } from 'lucide-react';
 
 export const Icons = {
@@ -30,4 +31,5 @@ export const Icons = {
   messageCircleQuestion: MessageCircleQuestionIcon,
   search: Search,
   user: User,
+  none: CircleOff,
 };
