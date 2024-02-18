@@ -89,3 +89,22 @@ export interface AverageFuel {
   average_price: number;
   count: number;
 }
+
+export type FuelType = 'Gazole' | 'SP95' | 'E85' | 'GPLc' | 'E10' | 'SP98';
+
+export type CardStation = {
+  id: number;
+  adresse: string;
+  cp: string;
+  ville: string;
+  update: string;
+  gazole_prix: string | null;
+  sp95_prix: string | null;
+  e85_prix: string | null;
+  gplc_prix: string | null;
+  e10_prix: string | null;
+  sp98_prix: string | null;
+  carburants_disponibles: FuelType[];
+  carburants_indisponibles: FuelType[];
+  services_service: string[];
+};
