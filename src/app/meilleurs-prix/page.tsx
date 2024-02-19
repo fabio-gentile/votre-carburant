@@ -1,11 +1,12 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useCheapest } from '@/hooks/use-cheapest';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { CardStation } from '@/components/card-station';
 import { TertiaryTitle } from '@/components/ui/title';
+import { Pagination } from '@/components/ui/pagination';
 
 export default function Page() {
   const fuels = [
@@ -18,18 +19,34 @@ export default function Page() {
   ];
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [fuelValue, setFuelValue] = useState(searchParams.get('cp') || 'gazole');
-  const [limit, setLimit] = useState(searchParams.get('limit') || 5);
-  const [offset, setOffset] = useState(searchParams.get('offset') || 0);
-  const { data, isLoading } = useCheapest(fuelValue, +limit, +offset);
+  const [fuelValue, setFuelValue] = useState(searchParams.get('fuel') || 'gazole');
+  const [currentPage, setCurrentPage] = useState(searchParams.get('page') || 1);
+  const LIMIT = 5;
+  const offset = useRef(+currentPage * LIMIT - LIMIT);
+  const { data, isLoading } = useCheapest(fuelValue, LIMIT, offset.current);
+  let lastFuel = searchParams.get('fuel') || 'gazole';
 
   const handleButtonIsActive = (value: string) => {
     setFuelValue(value);
   };
 
   useEffect(() => {
-    router.push(`/meilleurs-prix?fuel=${fuelValue}&limit=${limit}&offset=${offset}`);
-  }, [fuelValue, limit, offset, router]);
+    onPageChange(+currentPage);
+  }, [fuelValue, currentPage]);
+
+  const onPageChange = (page: number) => {
+    if (lastFuel !== fuelValue) {
+      setCurrentPage(1);
+      offset.current = 0;
+      lastFuel = fuelValue;
+      return router.push(`/meilleurs-prix?fuel=${fuelValue}&page=${currentPage}`);
+    }
+
+    setCurrentPage(page < 1 ? 1 : page);
+    offset.current = page * LIMIT - LIMIT;
+
+    router.push(`/meilleurs-prix?fuel=${fuelValue}&page=${currentPage}`);
+  };
 
   return (
     <>
@@ -44,12 +61,25 @@ export default function Page() {
           </Button>
         ))}
       </div>
+      {isLoading && <p>Loading...</p>}
       {!isLoading && data?.total_count === 0 ? (
-        <p>0 Station trouvée. Essayez de changer la ville ou le carburant.</p>
+        <p>0 Station trouvée. Essayez de changer le carburant.</p>
       ) : (
         <>
-          {data && <TertiaryTitle>{data?.total_count} Station recensées.</TertiaryTitle>}
+          {data && data?.results.length > 0 && (
+            <TertiaryTitle>{data?.total_count} Station recensées ces 3 derniers jours.</TertiaryTitle>
+          )}
           <CardStation stations={data?.results} />
+          {data && !data?.results.length && <p>Erreur lors du chargement</p>}
+          {!isLoading && !!data?.results.length && (
+            <Pagination
+              currentPage={+currentPage}
+              itemsPerPage={LIMIT}
+              range={3}
+              totalCount={data?.total_count || 0}
+              onPageChange={onPageChange}
+            />
+          )}
         </>
       )}
     </>
