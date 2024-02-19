@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '@/assets/globals.css';
 import localFont from 'next/font/local';
 import { NavigationMenu } from '@/components/navigation-menu';
 import { Footer } from '@/components/footer';
@@ -10,17 +10,17 @@ import { NextAuthProvider, TanstackQueryProvider } from '@/app/provider';
 const marianne = localFont({
   src: [
     {
-      path: '../fonts/Marianne-Light.woff2',
+      path: '../assets/fonts/Marianne-Light.woff2',
       weight: '300',
       style: 'normal',
     },
     {
-      path: '../fonts/Marianne-Regular.woff2',
+      path: '../assets/fonts/Marianne-Regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../fonts/Marianne-Bold.woff2',
+      path: '../assets/fonts/Marianne-Bold.woff2',
       weight: '700',
       style: 'normal',
     },
@@ -41,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='fr'>
       <body className={`${marianne.className} mx-auto flex min-h-[100vh] flex-col justify-center`}>
         <NextAuthProvider>
           <TanstackQueryProvider>
