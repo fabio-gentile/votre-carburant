@@ -37,7 +37,7 @@ export const Footer = () => {
     },
     {
       title: 'Mon compte',
-      href: '/profile',
+      href: '/profil',
       show: 'DEFAULT',
     },
   ];

@@ -59,7 +59,7 @@ export const NavigationMenu = () => {
     },
     {
       title: 'Mon compte',
-      href: '/profile',
+      href: '/profil',
       show: 'AUTHENTICATED',
       icon: <Icons.user />,
     },
@@ -139,7 +139,7 @@ export const NavigationMenu = () => {
                 <li>
                   <Link
                     title='Mon Compte'
-                    href='/profile'
+                    href='/profil'
                   >
                     <Icons.user
                       color={'white'}
