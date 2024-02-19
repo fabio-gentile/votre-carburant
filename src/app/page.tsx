@@ -43,7 +43,7 @@ async function AverageFuel() {
 }
 
 async function LatestStations() {
-  const { data } = await getLatestStations();
+  const { data } = await getLatestStations(5);
 
   return (
     <>
