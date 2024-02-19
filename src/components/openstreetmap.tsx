@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { icon } from 'leaflet';
 import { Price } from '@/types';
+import { cn } from '@/lib/utils';
 
 const ICON = icon({
   iconUrl: '/map-fuel-pin.png',
@@ -14,16 +15,13 @@ type Props = {
   longitude: number;
   address: string;
   prices: Price[];
+  className?: string;
 };
 
-function DynamicMap({ latitude, longitude, address, prices }: Props) {
-  console.log('price', prices);
+function DynamicMap({ latitude, longitude, address, prices, className }: Props) {
   return (
     <MapContainer
-      style={{
-        height: '500px',
-        width: '100%',
-      }}
+      className={cn('h-64 sm:h-80', className)}
       center={[latitude, longitude]}
       zoom={13}
       scrollWheelZoom={true}
@@ -40,7 +38,6 @@ function DynamicMap({ latitude, longitude, address, prices }: Props) {
           <p className='text-sm font-bold'>{address}</p>
           <ul className='grid gap-0.5'>
             {prices.map((price) => {
-              console.log('price');
               return (
                 <li key={price['@id']}>
                   {price['@nom']} : <span className='font-bold'>{price['@valeur']}€/L</span>

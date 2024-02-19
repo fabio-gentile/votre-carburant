@@ -115,16 +115,17 @@ export interface StationDetails {
     lon: number;
     lat: number;
   };
-  horaires: string[] | null;
+  horaires: Schedule | null;
   prix: Price[];
   horaires_automate_24_24: string | null;
   id: number;
   adresse: string;
-  cp: string;
+  cp: number;
   ville: string;
   carburants_disponibles: string[] | null;
   carburants_indisponibles: string[] | null;
   services_service: string[] | null;
+  code_departement: number;
 }
 
 export interface Price {
@@ -132,4 +133,19 @@ export interface Price {
   '@id': string;
   '@maj': string;
   '@valeur': string;
+}
+
+interface Schedule {
+  '@automate-24-24': string;
+  jour: [
+    {
+      '@id': string;
+      '@nom': string;
+      '@ferme': string;
+      horaire?: {
+        '@ouverture': string;
+        '@fermeture': string;
+      };
+    },
+  ];
 }

@@ -13,10 +13,11 @@ export const getStationDetails = async (id: number): Promise<{ data: StationDeta
       adresse: results[0].adresse,
       cp: results[0].cp,
       ville: results[0].ville,
-      carburants_disponibles: results[0].ville.carburants_disponibles,
-      carburants_indisponibles: results[0].ville.carburants_indisponibles,
-      services_service: results[0].ville.services_service,
+      carburants_disponibles: results[0].carburants_disponibles,
+      carburants_indisponibles: results[0].carburants_indisponibles,
+      services_service: results[0].services_service,
       horaires_automate_24_24: results[0].horaires_automate_24_24,
+      code_departement: results[0].code_departement,
     },
   };
 
