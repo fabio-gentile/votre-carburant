@@ -10,7 +10,7 @@ const PaginationContainer = ({ className, ...props }: React.ComponentProps<'nav'
   <nav
     role='navigation'
     aria-label='pagination'
-    className={cn('mx-auto flex w-fit justify-center bg-white', className)}
+    className={cn('mx-auto flex w-fit justify-center overflow-hidden rounded-xl bg-white', className)}
     {...props}
   />
 );
@@ -20,7 +20,7 @@ const PaginationContent = React.forwardRef<HTMLUListElement, React.ComponentProp
   ({ className, ...props }, ref) => (
     <ul
       ref={ref}
-      className={cn('flex flex-row items-center', className)}
+      className={cn('flex flex-row flex-wrap items-center justify-center', className)}
       {...props}
     />
   )
