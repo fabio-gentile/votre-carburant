@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { cn, millisecondsToHoursAndMinutes } from '@/lib/utils';
+import { cn, formatTime } from '@/lib/utils';
 import { Icons } from '@/components/icons';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -28,6 +28,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FuelType, CardStation } from '@/types';
+import Link from 'next/link';
 
 const CardStationContainer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
@@ -51,12 +52,13 @@ const CardStationInformation = React.forwardRef<HTMLDivElement, React.HTMLAttrib
 );
 CardStationInformation.displayName = 'CardStationInformation';
 
-const CardStationTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(
+const CardStationTitle = React.forwardRef<HTMLAnchorElement, React.LinkHTMLAttributes<HTMLAnchorElement>>(
   ({ className, ...props }, ref) => (
-    <h3
-      ref={ref}
+    <Link
+      href={props.href || '#'}
       className={cn('font-medium md:text-xl lg:text-2xl', className)}
       {...props}
+      ref={ref}
     />
   )
 );
@@ -117,88 +119,93 @@ const CardStationServiceIcon = React.forwardRef<HTMLDivElement, React.HTMLAttrib
 );
 CardStationServiceIcon.displayName = 'CardStationServiceIcon';
 
-const CardStationServiceIconContent = React.forwardRef<SVGSVGElement, { className?: string; service: string }>(
-  ({ className, service, ...props }, ref) => {
-    const getServiceIcon = (serviceName: string): IconDefinition | null => {
-      switch (serviceName.toLowerCase()) {
-        case 'vente de gaz domestique (butane, propane)':
-          return faGasPump;
-        case 'station de gonflage':
-          return faGauge;
-        case 'dab (distributeur automatique de billets)':
-          return faCreditCard;
-        case 'automate cb 24/24':
-          return faCar;
-        case 'boutique alimentaire':
-          return faCoffee;
-        case 'boutique non alimentaire':
-          return faStore;
-        case 'piste poids lourds':
-          return faTruck;
-        case 'carburant additivé':
-          return faOilCan;
-        case 'lavage automatique':
-          return faCar;
-        case 'toilettes publiques':
-          return faToilet;
-        case 'lavage manuel':
-          return faHandsBubbles;
-        case 'restauration à emporter':
-          return faUtensils;
-        case 'location de véhicule':
-          return faCar;
-        case 'relais colis':
-          return faBox;
-        case 'laverie':
-          return faSoap;
-        case "vente d'additifs carburants":
-          return faOilCan;
-        case 'services réparation / entretien':
-          return faTools;
-        case 'restauration sur place':
-          return faHome;
-        case 'wifi':
-          return faWifi;
-        case 'vente de fioul domestique':
-          return faGasPump;
-        case 'vente de pétrole lampant':
-          return faGasPump;
-        case 'bornes électriques':
-          return faPlug;
-        case 'bar':
-          return faCouch;
-        case 'espace bébé':
-          return faBaby;
-        case 'douches':
-          return faShower;
-        case 'aire de camping-cars':
-          return faCaravan;
-        default:
-          return null;
-      }
-    };
+const CardStationServiceIconContent = React.forwardRef<
+  SVGSVGElement,
+  { className?: string; service: string; serviceName?: string }
+>(({ className, service, serviceName }, ref) => {
+  const getServiceIcon = (serviceName: string): IconDefinition | null => {
+    switch (serviceName.toLowerCase()) {
+      case 'vente de gaz domestique (butane, propane)':
+        return faGasPump;
+      case 'station de gonflage':
+        return faGauge;
+      case 'dab (distributeur automatique de billets)':
+        return faCreditCard;
+      case 'automate cb 24/24':
+        return faCar;
+      case 'boutique alimentaire':
+        return faCoffee;
+      case 'boutique non alimentaire':
+        return faStore;
+      case 'piste poids lourds':
+        return faTruck;
+      case 'carburant additivé':
+        return faOilCan;
+      case 'lavage automatique':
+        return faCar;
+      case 'toilettes publiques':
+        return faToilet;
+      case 'lavage manuel':
+        return faHandsBubbles;
+      case 'restauration à emporter':
+        return faUtensils;
+      case 'location de véhicule':
+        return faCar;
+      case 'relais colis':
+        return faBox;
+      case 'laverie':
+        return faSoap;
+      case "vente d'additifs carburants":
+        return faOilCan;
+      case 'services réparation / entretien':
+        return faTools;
+      case 'restauration sur place':
+        return faHome;
+      case 'wifi':
+        return faWifi;
+      case 'vente de fioul domestique':
+        return faGasPump;
+      case 'vente de pétrole lampant':
+        return faGasPump;
+      case 'bornes électriques':
+        return faPlug;
+      case 'bar':
+        return faCouch;
+      case 'espace bébé':
+        return faBaby;
+      case 'douches':
+        return faShower;
+      case 'aire de camping-cars':
+        return faCaravan;
+      default:
+        return null;
+    }
+  };
 
-    const icon = getServiceIcon(service);
-    return (
-      icon && (
-        <span title={service}>
-          <FontAwesomeIcon
-            icon={icon}
-            ref={ref}
-            className={cn('w-4 gap-2.5 text-placeholder sm:w-5 md:w-6', className)}
-            {...props}
-          />
-        </span>
-      )
-    );
-  }
-);
+  const icon = getServiceIcon(service);
+  return (
+    icon && (
+      <span
+        title={service}
+        className={cn(`${serviceName ? 'flex items-center gap-2' : ''} `, className)}
+      >
+        <FontAwesomeIcon
+          icon={icon}
+          ref={ref}
+          className={cn('w-4 gap-2.5 text-placeholder sm:w-5 md:w-6', className)}
+        />
+        {serviceName ? serviceName : null}
+      </span>
+    )
+  );
+});
 CardStationServiceIconContent.displayName = 'CardStationServiceIconContent';
 
-const CardStationFuels = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+const CardStationFuels = React.forwardRef<HTMLAnchorElement, React.LinkHTMLAttributes<HTMLAnchorElement>>(
   ({ className, ...props }, ref) => (
-    <div
+    <Link
       ref={ref}
+      href={props.href || '#'}
       className={cn('grid grid-cols-3 gap-4 md:w-3/5', className)}
       {...props}
     />
@@ -206,9 +213,9 @@ const CardStationFuels = React.forwardRef<HTMLDivElement, React.HTMLAttributes<H
 );
 CardStationFuels.displayName = 'CardStationFuels';
 
-const CardStationFuel = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+const CardStationFuel = React.forwardRef<HTMLSpanElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div
+    <span
       ref={ref}
       className={cn('flex flex-col ', className)}
       {...props}
@@ -235,33 +242,45 @@ const CardStationFuelPrice = React.forwardRef<HTMLParagraphElement, React.HTMLAt
   ({ className, ...props }, ref) => (
     <p
       ref={ref}
-      className={cn('flex flex-col items-center rounded-b-md bg-white-bg py-1.5 sm:text-xl lg:text-2xl', className)}
+      className={cn(
+        'flex flex-col items-center justify-center rounded-b-md bg-white-bg py-1.5 sm:min-h-10 sm:text-xl lg:min-h-11 lg:text-2xl',
+        className
+      )}
       {...props}
     />
   )
 );
 CardStationFuelPrice.displayName = 'CardStationFuelPrice';
 
-const CardStation: React.FC<{ stations: CardStation[] }> = ({ stations }) => {
+const CardStation: React.FC<{ stations: CardStation[] | undefined }> = ({ stations }) => {
   const FUEL_NAME: FuelType[] = ['Gazole', 'SP98', 'E10', 'SP95', 'E85', 'GPLc'];
+  // console.log(stations)
   return (
     <div className='grid gap-4 sm:gap-6 lg:gap-8'>
       {stations &&
         stations.map((station) => {
           const differenceMs = +new Date() - +new Date(station.update);
-          const formattedTime = millisecondsToHoursAndMinutes(differenceMs);
+          const formattedTime = formatTime(differenceMs);
 
           return (
             <CardStationContainer key={station.id}>
               <CardStationInformation>
-                <CardStationTitle>{station.adresse}</CardStationTitle>
+                <CardStationTitle
+                  href={`/station/${station.id}`}
+                  className='hover:underline'
+                >
+                  Station Essence à {station.ville}
+                </CardStationTitle>
                 <CardStationLocalisation>
                   {`${station.adresse}, ${station.cp} ${station.ville}`}
                 </CardStationLocalisation>
                 <CardStationUpdate>mis à jour : {formattedTime}</CardStationUpdate>
                 {station.services_service && (
                   <CardStationServices>
-                    <CardStationTitle className='text-md md:text-base lg:text-xl'>
+                    <CardStationTitle
+                      href={`/station/${station.id}`}
+                      className='text-md md:text-base lg:text-xl'
+                    >
                       Services disponibles
                     </CardStationTitle>
                     <CardStationServiceIcon>
@@ -275,7 +294,7 @@ const CardStation: React.FC<{ stations: CardStation[] }> = ({ stations }) => {
                   </CardStationServices>
                 )}
               </CardStationInformation>
-              <CardStationFuels>
+              <CardStationFuels href={`/station/${station.id}`}>
                 {FUEL_NAME.map((fuel) => {
                   // @ts-ignore
                   const price = +station[fuel.toLowerCase() + '_prix'];
