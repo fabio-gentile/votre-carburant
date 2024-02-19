@@ -14,6 +14,11 @@ import {
   Search,
   User,
   CircleOff,
+  MoreHorizontal,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
   LucideProps,
 } from 'lucide-react';
 
@@ -57,4 +62,9 @@ export const Icons = {
       />
     </svg>
   ),
+  moreHorizontal: MoreHorizontal,
+  chevronLeft: ChevronLeft,
+  chevronRight: ChevronRight,
+  chevronsLeft: ChevronsLeft,
+  chevronsRight: ChevronsRight,
 };
