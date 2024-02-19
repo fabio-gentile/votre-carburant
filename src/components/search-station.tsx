@@ -17,12 +17,12 @@ interface FuelType {
 
 const listFuels: FuelType[] = [
   { value: '', name: 'Type de carburant (optionnel)' },
-  { value: 'E95', name: 'Essence 95' },
-  { value: 'E98', name: 'Essence 98' },
-  { value: 'SP95', name: 'Sans plomb 95' },
-  { value: 'SP98', name: 'Sans plomb 98' },
-  { value: 'Gasoil', name: 'Gasoil' },
-  { value: 'GPL', name: 'Gaz de pétrole liquéfié' },
+  { value: 'gazole', name: 'Gasoil' },
+  { value: 'sp98', name: 'Sans plomb 98' },
+  { value: 'e10', name: 'Essence 10' },
+  { value: 'e85', name: 'Essence 85' },
+  { value: 'sp95', name: 'Sans plomb 95' },
+  { value: 'gplc', name: 'Gaz de pétrole liquéfié' },
 ];
 
 export const SearchStation = () => {
@@ -45,7 +45,7 @@ export const SearchStation = () => {
   const handleChangeForm = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { value, name } = e.target;
     setQuery({ ...query, [name]: value });
-
+    if (error) setError('');
     if (name === 'address') setIsAddressSet(false);
   };
 
@@ -90,7 +90,12 @@ export const SearchStation = () => {
     // const address = suggestions.find((suggestion) => suggestion.properties.label === query.address);
     const address = suggestions.find((suggestion) => suggestion.properties.label === query.address.replace(',', ''));
 
-    router.push(`/rechercher?where=cp=${address?.properties.postcode}&limit=`);
+    console.log(query);
+    if (query.fuelType) {
+      router.push(`/rechercher?cp=${address?.properties.postcode}&fuel=${query.fuelType}&limit=5&offset=0`);
+    } else {
+      router.push(`/rechercher?cp=${address?.properties.postcode}&limit=5&offset=0`);
+    }
   };
 
   return (
