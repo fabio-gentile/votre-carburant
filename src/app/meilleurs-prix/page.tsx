@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useEffect, useRef, useState } from 'react';
 import { useCheapest } from '@/hooks/use-cheapest';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { CardStation } from '@/components/card-station';
+import { CardStation, CardStationSkeleton } from '@/components/card-station';
 import { TertiaryTitle } from '@/components/ui/title';
 import { Pagination } from '@/components/ui/pagination';
 
@@ -61,7 +61,7 @@ export default function Page() {
           </Button>
         ))}
       </div>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <CardStationSkeleton count={5} />}
       {!isLoading && data?.total_count === 0 ? (
         <p>0 Station trouvée. Essayez de changer le carburant.</p>
       ) : (

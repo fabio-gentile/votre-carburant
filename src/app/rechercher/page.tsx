@@ -3,7 +3,7 @@
 import { redirect, useSearchParams } from 'next/navigation';
 import { useStation } from '@/hooks/use-station';
 import { useEffect, useState } from 'react';
-import { CardStation } from '@/components/card-station';
+import { CardStation, CardStationSkeleton } from '@/components/card-station';
 import { TertiaryTitle } from '@/components/ui/title';
 
 export default function Page() {
@@ -25,7 +25,7 @@ export default function Page() {
 
   return (
     <>
-      {isLoading && <h2>Loading ...</h2>}
+      {isLoading && <CardStationSkeleton count={5} />}
 
       {!isLoading && data?.total_count === 0 ? (
         <p>0 Station trouvée. Essayez de changer la ville ou le carburant.</p>

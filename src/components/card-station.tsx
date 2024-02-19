@@ -29,6 +29,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FuelType, CardStation } from '@/types';
 import Link from 'next/link';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const CardStationContainer = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
@@ -315,6 +316,44 @@ const CardStation: React.FC<{ stations: CardStation[] | undefined }> = ({ statio
   );
 };
 
+const CardStationSkeleton: React.FC<{ count: number }> = ({ count = 5 }) => {
+  const FUEL_NAME: FuelType[] = ['Gazole', 'SP98', 'E10', 'SP95', 'E85', 'GPLc'];
+  const cards = [];
+
+  for (let i = 0; i < count; i++) {
+    cards.push(
+      <CardStationContainer key={i}>
+        <CardStationInformation>
+          <Skeleton className='h-5 w-full' />
+          <Skeleton className='h-5 w-full' />
+          <Skeleton className='h-5 w-full' />
+          <CardStationServices>
+            <Skeleton className='h-5 w-full' />
+            <CardStationServiceIcon>
+              <Skeleton className='h-5 w-8' />
+            </CardStationServiceIcon>
+            <CardStationServiceIcon>
+              <Skeleton className='h-5 w-8' />
+            </CardStationServiceIcon>
+          </CardStationServices>
+        </CardStationInformation>
+        <CardStationFuels>
+          {FUEL_NAME.map((fuel) => {
+            return (
+              <CardStationFuel key={fuel}>
+                <Skeleton className='h-5 w-full sm:min-h-10 lg:min-h-8' />
+                <Skeleton className='mt-4 h-5 w-full md:mt-6 lg:mt-8' />
+              </CardStationFuel>
+            );
+          })}
+        </CardStationFuels>
+      </CardStationContainer>
+    );
+  }
+
+  return <div className='grid gap-4 sm:gap-6 lg:gap-8'>{cards}</div>;
+};
+
 export {
   CardStation,
   CardStationContainer,
@@ -329,4 +368,5 @@ export {
   CardStationFuelName,
   CardStationFuelPrice,
   CardStationServiceIconContent,
+  CardStationSkeleton,
 };
