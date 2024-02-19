@@ -1,7 +1,7 @@
 'use client';
 
 import { Doughnut } from 'react-chartjs-2';
-import { Chart, ArcElement, Legend, Tooltip } from 'chart.js';
+import { Chart, ArcElement, Legend, Tooltip, ChartOptions } from 'chart.js';
 import { AverageFuel } from '@/types';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
@@ -21,7 +21,7 @@ export const HomeChart = ({ averageFuel, totalCount }: { averageFuel: AverageFue
     ],
   };
 
-  const options = {
+  const options: ChartOptions = {
     maintainAspectRatio: true,
     layout: {
       padding: {
@@ -37,34 +37,31 @@ export const HomeChart = ({ averageFuel, totalCount }: { averageFuel: AverageFue
           boxHeight: 18,
           boxWidth: 36,
           padding: 16,
-          strokeStyle: 'black',
         },
       },
-      // Change options for ALL labels of THIS CHART
       datalabels: {
-        formatter: function (value, context) {
-          const percentage = (context.chart.data.datasets[0].data[context.dataIndex] / totalCount) * 100;
+        formatter: function (value) {
+          const percentage = (value / totalCount) * 100;
           return `${Math.round(percentage * 100) / 100}%`;
         },
         color: '#ffffff',
         font: {
           size: 12,
         },
-        display: function (context) {
-          return window.screen.width > 700; // display labels with an odd index
+        display: function () {
+          return window.screen.width > 700;
         },
       },
     },
   };
 
-  // @ts-ignore
-  // chart-js type error
   return (
     <>
       <h2 className='secondary-title text-center'>{totalCount.toLocaleString('fr-FR')} stations services recensées</h2>
       <div className='relative mx-auto flex justify-center sm:h-[450px] sm:w-9/12 lg:h-[600px]'>
         <Doughnut
           data={data}
+          // @ts-ignore plugin bug
           options={options}
         />
       </div>
