@@ -1,6 +1,11 @@
 import React from 'react';
 import { PrimaryTitle } from '@/components/ui/title';
 import { SearchStation } from '@/components/search-station';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Rechercher',
+};
 
 export default function Layout({
   children,

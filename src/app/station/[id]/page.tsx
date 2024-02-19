@@ -18,10 +18,24 @@ import { formatTime } from '@/lib/utils';
 import dynamic from 'next/dynamic';
 import * as React from 'react';
 import { getNearestStations } from '@/services/station';
+import type { Metadata, ResolvingMetadata } from 'next';
 
 const DynamicMap = dynamic(() => import('@/components/openstreetmap'), {
   ssr: false,
 });
+
+type MetadataProps = {
+  params: { id: number };
+};
+
+export async function generateMetadata({ params }: MetadataProps, parent: ResolvingMetadata): Promise<Metadata> {
+  const id = params.id;
+  const { data } = await getStationDetails(id);
+
+  return {
+    title: `Station à ${data.ville}`,
+  };
+}
 
 export default async function Page({ params: { id } }: { params: { id: number } }) {
   const { data } = await getStationDetails(id);

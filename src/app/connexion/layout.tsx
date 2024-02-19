@@ -1,9 +1,9 @@
+import { Metadata } from 'next';
 import React from 'react';
 import { PrimaryTitle } from '@/components/ui/title';
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Meilleurs prix',
+  title: 'Se connecter',
 };
 
 export default function Layout({
@@ -12,8 +12,8 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className='flex flex-col justify-center gap-8 sm:gap-12 lg:gap-16'>
-      <PrimaryTitle>Les meilleurs prix de l’hexagone.</PrimaryTitle>
+    <div className={'w-84 mx-auto grid gap-4 sm:w-96'}>
+      <PrimaryTitle>Se connecter en un clic</PrimaryTitle>
       {children}
     </div>
   );

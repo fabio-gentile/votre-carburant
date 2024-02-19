@@ -1,4 +1,9 @@
 import { PrimaryTitle } from '@/components/ui/title';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Contact',
+};
 
 export default async function Page() {
   return (

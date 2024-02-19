@@ -1,5 +1,9 @@
 import { PrimaryTitle } from '@/components/ui/title';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: 'À propos',
+};
 export default async function Page() {
   return (
     <main className='flex flex-col justify-center gap-8 sm:gap-12 lg:gap-16'>
