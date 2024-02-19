@@ -19,8 +19,10 @@ import dynamic from 'next/dynamic';
 import * as React from 'react';
 import { getNearestStations } from '@/services/station';
 import type { Metadata, ResolvingMetadata } from 'next';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const DynamicMap = dynamic(() => import('@/components/openstreetmap'), {
+  loading: () => <Skeleton className='h-64 w-full sm:h-80 lg:w-3/5' />,
   ssr: false,
 });
 
