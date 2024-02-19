@@ -259,7 +259,7 @@ const CardStation: React.FC<{ stations: CardStation[] | undefined }> = ({ statio
     <div className='grid gap-4 sm:gap-6 lg:gap-8'>
       {stations &&
         stations.map((station) => {
-          const differenceMs = +new Date() - +new Date(station.update);
+          const differenceMs = +new Date() + 60 * 60 * 1000 - +new Date(station.update);
           const formattedTime = formatTime(differenceMs);
 
           return (
