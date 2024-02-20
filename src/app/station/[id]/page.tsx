@@ -104,7 +104,7 @@ export default async function Page({ params: { id } }: { params: { id: number } 
         </div>
 
         <DynamicMap
-          className='lg:w-3/5'
+          className='z-[1] lg:w-3/5'
           latitude={+data.geom.lat}
           longitude={+data.geom.lon}
           address={`${data.adresse}, ${data.cp} ${data.ville}`}
