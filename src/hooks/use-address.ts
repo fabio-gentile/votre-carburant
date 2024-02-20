@@ -32,7 +32,6 @@ export const useReverseGeolocation = (accessGranted = false) => {
       const { data } = await axios.get(
         `${process.env.NEXT_PUBLIC_API_REVERSE_GEOLOCATION}?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
       );
-      console.log(data);
 
       return data;
     },

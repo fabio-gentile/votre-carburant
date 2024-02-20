@@ -9,8 +9,8 @@ import { postUserBookmarks } from '@/services/bookmarks';
 export function AddBookmark({ session, stationId }: { session: Session | null; stationId: number }) {
   const handleAddBookmark = async () => {
     const add = await postUserBookmarks(session?.user?.email || '', stationId);
-    console.log(add);
   };
+
   return (
     <>
       <Button onClick={handleAddBookmark}>

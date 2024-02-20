@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest, response: NextResponse) {
   const { name, email, bookmarks } = await request.json();
-  // console.log(name, email, bookmarks);
   await connectMongoDB();
   await UserModel.create({ name, email, bookmarks });
 

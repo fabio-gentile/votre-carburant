@@ -87,10 +87,8 @@ export const SearchStation = () => {
       return;
     }
 
-    // const address = suggestions.find((suggestion) => suggestion.properties.label === query.address);
     const address = suggestions.find((suggestion) => suggestion.properties.label === query.address.replace(',', ''));
 
-    console.log(query);
     if (query.fuelType) {
       router.push(`/rechercher?cp=${address?.properties.postcode}&fuel=${query.fuelType}&limit=5&offset=0`);
     } else {
