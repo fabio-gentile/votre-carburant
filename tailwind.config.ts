@@ -33,6 +33,9 @@ const config: Config = {
             lg: '992px',
           },
         },
+        // height: {
+        //   screen: ['100vh /* fallback for Opera, IE and etc. */', '100dvh'],
+        // },
       },
     },
   },

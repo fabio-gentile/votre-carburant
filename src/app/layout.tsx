@@ -42,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='fr'>
-      <body className={`${marianne.className} mx-auto flex min-h-[100vh] flex-col justify-center`}>
+      <body className={`${marianne.className} mx-auto flex min-h-[100dvh] flex-col justify-center`}>
         <NextAuthProvider>
           <TanstackQueryProvider>
             <NavigationMenu />

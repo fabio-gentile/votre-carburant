@@ -157,7 +157,7 @@ export const NavigationMenu = () => {
           <div
             onClick={handleMenu}
             className={clsx(
-              'absolute bottom-0 left-0 z-10 min-h-[calc(100vh-60px)] w-full bg-black transition-all',
+              'absolute bottom-0 left-0 z-10 min-h-[calc(100dvh-60px)] w-full bg-black transition-all',
               `${isOpened ? 'bg-opacity-80' : 'bg-opacity-0'}`
             )}
           ></div>
@@ -168,7 +168,7 @@ export const NavigationMenu = () => {
         <Wrapper
           className={clsx(
             'absolute bottom-0 z-50 mx-0 flex max-w-fit flex-col justify-between bg-blue-700 pt-10 text-white transition-all',
-            `${isOpened ? 'left-0 min-h-[calc(100vh-59px)] overflow-hidden' : '-left-[101vw] h-full'}`
+            `${isOpened ? 'left-0 min-h-[calc(100dvh-59px)] overflow-hidden' : '-left-[101vw] h-full'}`
           )}
         >
           <nav>
@@ -185,6 +185,7 @@ export const NavigationMenu = () => {
                       className='inline-flex'
                     >
                       <Link
+                        onClick={handleMenu}
                         tabIndex={isOpened ? 1 : -1}
                         href={link.href}
                         className='flex items-center gap-2 rounded-lg p-2 hover:bg-white/10'
