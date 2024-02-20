@@ -45,10 +45,12 @@ async function AverageFuel() {
 async function LatestStations() {
   const { data } = await getLatestStations(5);
 
-  return (
-    <>
-      <SecondaryTitle className='text-center'>Dernière stations mises à jours</SecondaryTitle>
-      <CardStation stations={data} />
-    </>
-  );
+  if (data)
+    return (
+      <>
+        <SecondaryTitle className='text-center'>Dernière stations mises à jours</SecondaryTitle>
+        <CardStation stations={data} />
+      </>
+    );
+  else return false;
 }
