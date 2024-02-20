@@ -63,12 +63,6 @@ export const NavigationMenu = () => {
       show: 'AUTHENTICATED',
       icon: <Icons.user />,
     },
-    {
-      title: 'Déconnexion',
-      href: '/deconnexion',
-      show: 'AUTHENTICATED',
-      icon: <Icons.logOut />,
-    },
   ];
   const handleMenu = () => {
     setIsOpened(!isOpened);

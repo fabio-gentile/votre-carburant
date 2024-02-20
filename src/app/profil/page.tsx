@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/authOptions';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Metadata } from 'next';
+import { SignOut } from '@/components/sign-out';
 
 export const metadata: Metadata = {
   title: 'Profil',
@@ -26,9 +27,12 @@ export default async function Page() {
         />
       </div>
       <p>Page en construction</p>
-      <Link href='/favoris'>
-        <Button className='w-fit'>Mes favoris</Button>
-      </Link>
+      <div className='flex gap-4'>
+        <Link href='/favoris'>
+          <Button>Mes favoris</Button>
+        </Link>
+        <SignOut />
+      </div>
     </div>
   );
 }
