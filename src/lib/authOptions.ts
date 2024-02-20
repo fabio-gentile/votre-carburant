@@ -1,5 +1,5 @@
 import { connectMongoDB } from '@/lib/mongodb';
-import User from '@/models/user';
+import UserModel from '@/models/user';
 import GoogleProvider from 'next-auth/providers/google';
 import { NextAuthOptions } from 'next-auth';
 
@@ -17,11 +17,11 @@ export const authOptions: NextAuthOptions = {
         const { name, email } = user;
         try {
           await connectMongoDB();
-          const userExists = await User.findOne({ email });
+          const userExists = await UserModel.findOne({ email });
 
           if (!userExists) {
             const bookmarks: [] = [];
-            const res = await fetch('http://localhost:3000/api/user', {
+            const res = await fetch(`${process.env.NEXTAUTH_URL}/api/user`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
