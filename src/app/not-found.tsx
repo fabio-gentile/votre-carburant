@@ -7,7 +7,7 @@ function NotFoundPage() {
     <>
       <PrimaryTitle className='mb-8'>Page introuvable</PrimaryTitle>
       <Link href='/'>
-        <Button>Revenir à l'accueil</Button>
+        <Button>Revenir à l&apos;accueil</Button>
       </Link>
     </>
   );
