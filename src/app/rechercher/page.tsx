@@ -2,11 +2,19 @@
 
 import { redirect, useSearchParams } from 'next/navigation';
 import { useStation } from '@/hooks/use-station';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { CardStation, CardStationSkeleton } from '@/components/card-station';
 import { TertiaryTitle } from '@/components/ui/title';
 
 export default function Page() {
+  return (
+    <Suspense>
+      <Search />
+    </Suspense>
+  );
+}
+
+function Search() {
   const searchParams = useSearchParams();
   const [postalCode, setPostalCode] = useState(searchParams.get('cp') || '');
   const [fuelType, setFuelType] = useState(searchParams.get('fuel') || null);

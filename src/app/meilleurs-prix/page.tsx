@@ -7,8 +7,17 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { CardStation, CardStationSkeleton } from '@/components/card-station';
 import { TertiaryTitle } from '@/components/ui/title';
 import { Pagination } from '@/components/ui/pagination';
+import { Suspense } from 'react';
 
 export default function Page() {
+  return (
+    <Suspense>
+      <BestPrice />
+    </Suspense>
+  );
+}
+
+function BestPrice() {
   const fuels = [
     { value: 'gazole', name: 'Gasoil' },
     { value: 'sp98', name: 'Sans plomb 98' },
