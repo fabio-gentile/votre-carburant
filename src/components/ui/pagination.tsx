@@ -64,7 +64,7 @@ const PaginationPrevious = ({ className, ...props }: React.ComponentProps<typeof
     {...props}
   >
     <Icons.chevronLeft className='h-4 w-4' />
-    <span>Précédant</span>
+    {/*<span>Précédant</span>*/}
   </PaginationLink>
 );
 PaginationPrevious.displayName = 'PaginationPrevious';
@@ -76,7 +76,7 @@ const PaginationNext = ({ className, ...props }: React.ComponentProps<typeof Pag
     className={cn('gap-1 pr-2.5', className)}
     {...props}
   >
-    <span>Suivant</span>
+    {/*<span>Suivant</span>*/}
     <Icons.chevronRight className='h-4 w-4' />
   </PaginationLink>
 );

@@ -27,7 +27,7 @@ export default async function Page() {
         />
       </div>
       <p>Page en construction</p>
-      <div className='flex gap-4'>
+      <div className='flex flex-wrap gap-4'>
         <Link href='/favoris'>
           <Button>Mes favoris</Button>
         </Link>
