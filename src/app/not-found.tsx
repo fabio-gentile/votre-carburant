@@ -1,5 +1,16 @@
+import { PrimaryTitle } from '@/components/ui/title';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+
 function NotFoundPage() {
-    return <h1>Page introuvable</h1>
+  return (
+    <>
+      <PrimaryTitle className='mb-8'>Page introuvable</PrimaryTitle>
+      <Link href='/'>
+        <Button>Revenir à l'accueil</Button>
+      </Link>
+    </>
+  );
 }
 
-export default NotFoundPage
+export default NotFoundPage;
