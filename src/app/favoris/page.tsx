@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { getUserBookmarks } from '@/services/bookmarks';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/authOptions';
-import { AverageFuel, Bookmark } from '@/types';
+import { Bookmark } from '@/types';
 import { getStationById } from '@/services/station';
 import { CardStation } from '@/components/card-station';
 
