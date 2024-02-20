@@ -21,7 +21,7 @@ export async function GET(request: NextRequest, { params }: { params: { email: s
   }
 }
 
-export async function POST(request: NextResponse) {
+export async function POST(request: NextRequest, response: NextResponse) {
   const { email, stationId } = await request.json();
 
   try {
