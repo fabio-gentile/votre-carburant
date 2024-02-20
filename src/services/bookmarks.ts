@@ -1,14 +1,15 @@
-export const getUserBookmarks = async (userEmail: string): Promise<{ data: any }> => {
+import { Bookmark } from '@/types';
+
+export const getUserBookmarks = async (userEmail: string): Promise<{ data: Bookmark[] }> => {
   const response = await fetch(`${process.env.NEXTAUTH_URL}/api/bookmarks?email=${userEmail}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   });
-  const data = await response.json();
-  console.log(data);
+  const { bookmarks } = await response.json();
 
-  return { data: data };
+  return { data: bookmarks };
 };
 
 export const postUserBookmarks = async (userEmail: string, stationId: number) => {

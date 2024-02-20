@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
-  console.log(session);
+  // console.log(session);
+
   return (
     <div className='flex flex-col justify-center gap-8 sm:gap-10 lg:gap-12'>
       <PrimaryTitle>Mon profil</PrimaryTitle>

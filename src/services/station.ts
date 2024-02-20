@@ -9,6 +9,15 @@ export const getLatestStations = async (limit: number = 3): Promise<{ data: Card
   return { data: results };
 };
 
+export const getStationById = async (id: number): Promise<{ data: CardStation[] }> => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_INSTANT_FUEL}?select=id%2Cadresse%2Ccp%2Cville%2Cgazole_maj%20as%20update%2Cgazole_prix%2Cgazole_prix%2Csp95_prix%2Ce85_prix%2Cgplc_prix%2Ce10_prix%2Csp98_prix%2Ccarburants_disponibles%2Ccarburants_indisponibles%2Cservices_service&where=id%3D${id}&limit=5`
+  );
+  const { results } = await response.json();
+
+  return { data: results };
+};
+
 /**
  * Get the nereasts stations based on postal code and department code. If the results using the postal code is less than the limit fixed (maximum 100) then it will use the department code to expand the query
  * @param postalCode
