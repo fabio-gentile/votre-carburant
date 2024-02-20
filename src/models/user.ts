@@ -1,9 +1,5 @@
-import mongoose, { Schema, models, InferSchemaType } from 'mongoose';
-
-interface Bookmark {
-  stationId: string;
-  _id?: string;
-}
+import mongoose, { Schema } from 'mongoose';
+import { Bookmark } from '@/types';
 
 interface IUser {
   name: string;
