@@ -10,6 +10,7 @@ export const SignOut = () => {
       <Button
         variant='secondary'
         onClick={() => signOut()}
+        className='gap-4 md:gap-6 lg:gap-8'
       >
         <Icons.logOut />
         Se déconnecter
