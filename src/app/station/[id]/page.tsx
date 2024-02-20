@@ -20,6 +20,9 @@ import * as React from 'react';
 import { getNearestStations } from '@/services/station';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { Skeleton } from '@/components/ui/skeleton';
+import { AddBookmark } from '@/components/add-bookmark';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/authOptions';
 
 const DynamicMap = dynamic(() => import('@/components/openstreetmap'), {
   loading: () => <Skeleton className='h-64 w-full sm:h-80 lg:w-3/5' />,
@@ -41,11 +44,10 @@ export async function generateMetadata({ params }: MetadataProps, parent: Resolv
 
 export default async function Page({ params: { id } }: { params: { id: number } }) {
   const { data } = await getStationDetails(id);
-
+  const session = await getServerSession(authOptions);
   let mostRecenteUpdate: Date = new Date('1966-01-01');
   for (const price of data.prix) {
     if (new Date(price['@maj']) >= mostRecenteUpdate) mostRecenteUpdate = new Date(price['@maj']);
-    console.log(price['@nom'], price['@maj']);
   }
   const differenceMs = +new Date() - +mostRecenteUpdate;
   const formattedTime = formatTime(differenceMs);
@@ -55,10 +57,13 @@ export default async function Page({ params: { id } }: { params: { id: number } 
   return (
     <div className='grid gap-8 md:gap-12'>
       <div className='flex flex-wrap gap-4'>
-        <Button>
-          <Icons.bookmarkCheck className='mr-2' />
-          Ajouter aux favoris
-        </Button>
+        {session?.user?.email ? (
+          <AddBookmark
+            session={session}
+            stationId={data.id}
+          />
+        ) : null}
+
         <a
           href={`https://www.waze.com/live-map/directions?to=ll.${data.geom.lat}%2C${data.geom.lon}`}
           target='_blank'
