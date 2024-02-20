@@ -25,7 +25,7 @@ export default async function Page() {
   return (
     <div className='flex flex-col justify-center gap-8 sm:gap-12 lg:gap-16'>
       <PrimaryTitle>Mes favoris</PrimaryTitle>
-      {stations ? (
+      {!stations ? (
         <TertiaryTitle>
           Vous n&apos;avez aucun favoris. Pour en ajouter, rendez-vous sur la page d&apos;une station
         </TertiaryTitle>
